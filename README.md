@@ -24,6 +24,11 @@ optional arguments:
 
 ## Input
 
+I just downloaded an image from the image search result in Google with keyword "Detroit become human kara".
+This image could raise an copyright issue.
+If it occurs, I will change the other copyright-free image, but for now, I want to keep this image because this image makes me passionate to implement this code.
+
+The original source: https://www.syfy.com/syfywire/video-game-heroine-of-the-month-kara-from-detroit-become-human
 ![input](https://user-images.githubusercontent.com/12251974/109493461-ded12700-7acf-11eb-8c73-782f20bcfc7a.jpg)
 
 ## Output
