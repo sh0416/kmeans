@@ -3,7 +3,7 @@ Extremely simple implementation of KMeans clustering algorithm
 
 ## Input
 
-![input](https://user-images.githubusercontent.com/12251974/109493461-ded12700-7acf-11eb-8c73-782f20bcfc7a.jpg){: width="100" height="100"}
+![input](https://user-images.githubusercontent.com/12251974/109493461-ded12700-7acf-11eb-8c73-782f20bcfc7a.jpg)
 
 ## Output
 
