@@ -1,4 +1,5 @@
 import os
+import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
@@ -34,21 +35,30 @@ class KMeans:
         return np.absolute(self.image - img).mean()
 
 
-k=50
-img = mpimg.imread("input2.jpg")
-kmeans = KMeans(img, k)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--k", type=int, default=50,
+                        help="The number of centroid (default to 50)")
+    parser.add_argument("--input", type=str, default=os.path.join("res", "input.jpg"),
+                        help=("The filepath for input image (default"
+                              " to os.path.join(\"res\", \"input.jpg\"))"))
+    args = parser.parse_args()
 
-fig, ax = plt.subplots()
-im = plt.imshow(img)
+    img = mpimg.imread(args.input)
+    kmeans = KMeans(img, args.k)
 
-def animate(i):
-    kmeans.assign()
-    kmeans.update()
-    ax.set_title("K: %d, Iteration: %d, Reconstruction error: %.4f" % (k, i, kmeans.error()))
-    kmeans.visualize(im)
-    plt.savefig(os.path.join('out', 'frame_%d_%d.png' % (k, i)))
-    return im
+    fig, ax = plt.subplots()
+    im = plt.imshow(img)
 
-ani = FuncAnimation(fig, animate)
-writer = PillowWriter(fps=5)
-ani.save("result_%d.gif" % k, writer=writer)
+    def animate(i):
+        kmeans.assign()
+        kmeans.update()
+        ax.set_title("K: %d, Iteration: %d, Reconstruction error: %.4f" % (args.k, i, kmeans.error()))
+        kmeans.visualize(im)
+        plt.savefig(os.path.join('res', 'frame_%d_%d.png' % (args.k, i)))
+        return im
+
+    os.makedirs("res", exist_ok=True)
+    ani = FuncAnimation(fig, animate)
+    writer = PillowWriter(fps=5)
+    ani.save(os.path.join("res", "result_%d.gif" % args.k), writer=writer)
